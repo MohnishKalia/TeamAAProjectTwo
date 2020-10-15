@@ -9,7 +9,6 @@
 
 import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.InputMismatchException;
 import java.util.EnumSet;
 
 /**
@@ -69,9 +68,27 @@ public class FrontEnd2 {
         return String.format("\n! %s !", message);
     }
 
-    private static final String INVALID_COMMAND_MESSAGE = getErrorString("Invalid Command Entered");
-    private static final String INVALID_INPUT_MESSAGE = getErrorString("Invalid Input Field");
+    private static final String INVALID_INPUT_MESSAGE = "Invalid Input Field";
     private static final String WISC_ID_PROMPT = "Input WiscID:";
+
+    /**
+     * Runs a block of code while appropriately handling errors from both user input
+     * and state operations
+     * 
+     * @param codeBlock block of code to run under try-catch
+     */
+    private static void runWithCatch(Runnable codeBlock) {
+        try {
+            codeBlock.run();
+        } catch (IllegalArgumentException e) {
+            // user input was malformed
+            System.out.println(getErrorString(INVALID_INPUT_MESSAGE));
+        } catch (Exception e) {
+            // TODO: Add StateException here instead of generic exception
+            // user input was correctly formed, but is not valid
+            System.out.println(getErrorString(e.getMessage()));
+        }
+    }
 
     public static void main(String[] args) {
         // try-with-resources
@@ -80,18 +97,16 @@ public class FrontEnd2 {
             // loop is infinite because program should be canceled with the EXIT method
             // (^C and Stop button on IDE will terminate the program completely)
             while (true) {
-                System.out.println("Please enter an operation:");
-                // print out the set of enum constants for the user
-                System.out.println(EnumSet.allOf(Operation.class));
-                printInputPrefix();
-                try {
+                runWithCatch(() -> {
+                    System.out.println("Please enter an operation:");
+                    // print out the set of enum constants for the user
+                    System.out.println(EnumSet.allOf(Operation.class));
+                    printInputPrefix();
                     // will throw IllegalArgumentException if the user input is not an enum constant
                     Operation op = Operation.valueOf(input.nextLine().toUpperCase());
                     // runs the associated method, passing in the Scanner for reuse
                     op.exec(input);
-                } catch (IllegalArgumentException e) {
-                    System.out.println(INVALID_COMMAND_MESSAGE);
-                }
+                });
                 // line separator to make output more readable
                 System.out.println();
             }
@@ -105,29 +120,11 @@ public class FrontEnd2 {
      */
     private static final State1 state = new State1();
 
-    /**
-     * Runs a block of code while appropriately handling errors from both user input
-     * and state operations
-     * 
-     * @param codeBlock block of code to run under try-catch
-     */
-    private static void runWithCatch(Runnable codeBlock) {
-        try {
-            codeBlock.run();
-        } catch (InputMismatchException | IllegalArgumentException e) {
-            System.out.println(INVALID_INPUT_MESSAGE);
-        } catch (Exception e) {
-            // TODO: Add StateException here instead of generic exception
-            System.out.println(getErrorString(e.getMessage()));
-        }
-    }
-
     public static void add(Scanner input) {
         runWithCatch(() -> {
             System.out.println(WISC_ID_PROMPT);
             printInputPrefix();
-            long wiscID = input.nextLong();
-            input.nextLine();
+            long wiscID = Long.parseLong(input.nextLine());
 
             System.out.println("Input Name:");
             printInputPrefix();
@@ -148,8 +145,7 @@ public class FrontEnd2 {
         runWithCatch(() -> {
             System.out.println(WISC_ID_PROMPT);
             printInputPrefix();
-            long wiscID = input.nextLong();
-            input.nextLine();
+            long wiscID = Long.parseLong(input.nextLine());
 
             state.removeMember(wiscID);
             System.out.println("Member removed!");
@@ -160,8 +156,7 @@ public class FrontEnd2 {
         runWithCatch(() -> {
             System.out.println(WISC_ID_PROMPT);
             printInputPrefix();
-            long wiscID = input.nextLong();
-            input.nextLine();
+            long wiscID = Long.parseLong(input.nextLine());
 
             System.out.println(state.getMember(wiscID));
         });
