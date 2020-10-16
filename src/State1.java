@@ -14,8 +14,12 @@ public class State1{
     private RedBlackTree<Member1> tree;// = DataUtils.loadData();
     private LinkedList<Long> keys;
 
-
-
+    /**
+     * TEMPORARY CONSTRUCTOR UNTIL DATAUTILS WORKS
+     */
+    public State1(){
+        tree = new RedBlackTree<Member1>();
+    }
     public void insertMember(long wiscID, String name, Member1.SchoolYear yearInSchool) throws IllegalArgumentException{
         tree.insert(new Member1(wiscID, name, yearInSchool));
     }
