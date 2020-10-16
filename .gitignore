@@ -25,3 +25,6 @@ hs_err_pid*
 bin/
 .idea
 .vscode
+
+# Common files (RedBlackTree.java)
+RedBlackTree.java
