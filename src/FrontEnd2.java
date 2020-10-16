@@ -25,8 +25,8 @@ public class FrontEnd2 {
      */
     private enum Operation {
 
-        ADD(FrontEnd2::add), REMOVE(FrontEnd2::remove), GET(FrontEnd2::get), PRINTALL(FrontEnd2::printAll),
-        SAVE(FrontEnd2::save), EXIT(FrontEnd2::exit);
+        ADD(FrontEnd2::add), GET(FrontEnd2::get), PRINTALL(FrontEnd2::printAll), SAVE(FrontEnd2::save),
+        EXIT(FrontEnd2::exit);
 
         private Consumer<Scanner> method;
 
@@ -148,22 +148,12 @@ public class FrontEnd2 {
 
             System.out.println("Input School Year:");
             // print out the set of enum constants for the user
-            System.out.println(EnumSet.allOf(Member.SchoolYear.class));
+            System.out.println(EnumSet.allOf(Member1.SchoolYear.class));
             printInputPrefix();
-            Member.SchoolYear yearInSchool = Member.SchoolYear.valueOf(input.nextLine().toUpperCase());
+            Member1.SchoolYear yearInSchool = Member1.SchoolYear.valueOf(input.nextLine().toUpperCase());
 
             state.insertMember(wiscID, name, yearInSchool);
             System.out.println("Member inserted!");
-        });
-    }
-
-    public static void remove(Scanner input) {
-        runWithErrorHandling(() -> {
-            System.out.println(WISC_ID_PROMPT);
-            printInputPrefix();
-            long wiscID = Long.parseLong(input.nextLine());
-
-            System.out.println("Member removed!" + "\n" + state.removeMember(wiscID));
         });
     }
 
