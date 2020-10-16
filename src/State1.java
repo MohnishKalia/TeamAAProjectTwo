@@ -11,31 +11,18 @@ import java.util.LinkedList;
 
 public class State1{
 
-    private RedBlackTree<Member> tree;// = DataUtils.loadData();
+    private RedBlackTree<Member1> tree;// = DataUtils.loadData();
     private LinkedList<Long> keys;
 
 
-    private static class Member implements Comparable<Member> {
-        enum SchoolYear {
-            FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER
-        }
 
-        public Member(long iwiscID, String iname, SchoolYear iyearInSchool){
-            this.wiscID = iwiscID;
-            this.name = iname;
-            this.yearInSchool = iyearInSchool;
-        }
-
-        public int compareTo(Member m){
-            return this.wiscID.compareTo(m.wiscID);
-        }
-
-        //instance fields for Member:
-        Long wiscID;
-        String name;
-        SchoolYear yearInSchool;
+    public void insertMember(long wiscID, String name, Member1.SchoolYear yearInSchool) throws IllegalArgumentException{
+        tree.insert(new Member1(wiscID, name, yearInSchool));
     }
-
+    public Member1 getMember(long wiscID){
+        //TODO
+        return new Member1(123123, "Must fix", Member1.SchoolYear.valueOf("OTHER"));
+    }
     //public Member getMember(long iwiscID){
 
 
@@ -52,6 +39,9 @@ public class State1{
 
      */
 
+    public void save() {
+        //DataUtils.saveData(tree);
+    }
 
 
 }
