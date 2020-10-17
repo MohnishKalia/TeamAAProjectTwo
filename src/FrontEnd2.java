@@ -172,8 +172,8 @@ public class FrontEnd2 {
     }
 
     public static void save(Scanner input) {
-        System.out.println("State saved!");
         state.save();
+        System.out.println("State saved!");
     }
 
     public static void exit(Scanner input) {
