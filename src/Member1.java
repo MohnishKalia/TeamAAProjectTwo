@@ -1,10 +1,19 @@
-import java.time.LocalTime;
+// --== CS400 File Header Information ==--
+// Name: Grant Parfrey
+// Email: gparfrey@wisc.edu
+// Team: AA
+// TA: Sophie Stephenson
+// Lecturer: Florian Heimerl
+// Notes to Grader: n/a
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Member1 implements Comparable<Member1> {
     enum SchoolYear {
         FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER
     }
 
-    public Member1(long iwiscID, String iname, SchoolYear iyearInSchool, LocalTime itime){
+    public Member1(long iwiscID, String iname, SchoolYear iyearInSchool, LocalDateTime itime){
         this.wiscID = iwiscID;
         this.name = iname;
         this.yearInSchool = iyearInSchool;
@@ -14,7 +23,7 @@ public class Member1 implements Comparable<Member1> {
         this.wiscID = iwiscID;
         this.name = iname;
         this.yearInSchool = iyearInSchool;
-        this.time = LocalTime.now();
+        this.time = LocalDateTime.now();
     }
 
     public int compareTo(Member1 m){
@@ -25,11 +34,13 @@ public class Member1 implements Comparable<Member1> {
     Long wiscID;
     String name;
     SchoolYear yearInSchool;
-    LocalTime time;
+    LocalDateTime time;
 
     @Override
     public String toString(){
-        return (wiscID.toString()+","+name+","+yearInSchool+","+time);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = time.format(format);
+        return (wiscID.toString()+","+name+","+yearInSchool+","+formattedDate);
     }
 
 
