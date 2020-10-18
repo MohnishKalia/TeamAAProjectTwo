@@ -23,7 +23,7 @@ public class State1{
      *     to return all the members
      */
     String file = "member.csv";
-    public RedBlackTree<Member1> tree;
+    private RedBlackTree<Member1> tree;
     String toReturn;
 
     /**
