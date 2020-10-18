@@ -1,12 +1,14 @@
+import java.time.LocalTime;
 public class Member1 implements Comparable<Member1> {
     enum SchoolYear {
         FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER
     }
 
-    public Member1(long iwiscID, String iname, SchoolYear iyearInSchool){
+    public Member1(long iwiscID, String iname, SchoolYear iyearInSchool, LocalTime itime){
         this.wiscID = iwiscID;
         this.name = iname;
         this.yearInSchool = iyearInSchool;
+        this.time = itime;
     }
 
     public int compareTo(Member1 m){
@@ -17,6 +19,12 @@ public class Member1 implements Comparable<Member1> {
     Long wiscID;
     String name;
     SchoolYear yearInSchool;
+    LocalTime time;
+
+    @Override
+    public String toString(){
+        return (wiscID.toString()+","+name+","+yearInSchool+","+time);
+    }
 
 
 }
