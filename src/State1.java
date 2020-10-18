@@ -7,18 +7,17 @@
 // Notes to Grader: n/a
 
 import java.time.LocalTime;
-import java.util.LinkedList;
+
 
 public class State1{
-
-    private RedBlackTree<Member1> tree;// = DataUtils.loadData();
-    private LinkedList<Long> keys;
+    String file = "log.csv";
+    public RedBlackTree<Member1> tree;
 
     /**
      * TEMPORARY CONSTRUCTOR UNTIL DATAUTILS WORKS
      */
     public State1(){
-        tree = new RedBlackTree<Member1>();
+        tree = DataWrangler1.readFile(file).getTree();
     }
     public void insertMember(long wiscID, String name, Member1.SchoolYear yearInSchool) throws IllegalArgumentException{
         //Makes sure that the wiscID is 9 digits long. First digit must not be zero
@@ -97,7 +96,8 @@ public class State1{
     }
 
     public void save() {
-        //DataUtils.saveData(tree);
+        if(tree.root !=null)
+            DataWrangler1.writeToFile(file,tree);
     }
 
 

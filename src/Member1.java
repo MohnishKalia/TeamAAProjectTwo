@@ -10,6 +10,12 @@ public class Member1 implements Comparable<Member1> {
         this.yearInSchool = iyearInSchool;
         this.time = itime;
     }
+    public Member1(long iwiscID, String iname, SchoolYear iyearInSchool){
+        this.wiscID = iwiscID;
+        this.name = iname;
+        this.yearInSchool = iyearInSchool;
+        this.time = LocalTime.now();
+    }
 
     public int compareTo(Member1 m){
         return this.wiscID.compareTo(m.wiscID);

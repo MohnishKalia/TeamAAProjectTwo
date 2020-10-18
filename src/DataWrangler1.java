@@ -13,7 +13,7 @@ public class DataWrangler1 {
 	 * @return TreeAndKeys object that stores the red black tree and a list of keys
 	 */
 	public static TreeAndKeys readFile(String filePath) {
-		RedBlackTree<Member> tree = new RedBlackTree<>(); // tree where the data will be stored
+		RedBlackTree<Member1> tree = new RedBlackTree<>(); // tree where the data will be stored
 		ArrayList<Long> keys = new ArrayList<>(); // array list where the keys will be stored
 		BufferedReader csvReader = null; // reads the csv file
 		try {
@@ -24,8 +24,8 @@ public class DataWrangler1 {
 				String[] data = csvReader.readLine().split(","); // splits the line by comma
 				long wiscID = Long.parseLong(data[0]); // converts string to long
 				String name = data[1];
-				String year = data[2];
-				Member m = new Member(wiscID, name, year); // creates a new member based on the data
+				Member1.SchoolYear year = Member1.SchoolYear.valueOf(data[2]);
+				Member1 m = new Member1(wiscID, name, year); // creates a new member based on the data
 				tree.insert(m); // inserts the member into the tree
 				keys.add(wiscID); // add the key to the keys array
 			}
@@ -55,7 +55,7 @@ public class DataWrangler1 {
 	 * @param gymData tree storing the member objects
 	 * @throws IOException
 	 */
-	public static void write(FileWriter writer, RedBlackTree<Member> gymData) throws IOException {
+	public static void write(FileWriter writer, RedBlackTree<Member1> gymData) throws IOException {
 		String[] data = gymData.toString().split(",");
 		for (int i = 0; i < data.length; i++) {
 			writer.write(data[i]);
@@ -63,7 +63,7 @@ public class DataWrangler1 {
 		}
 	}
 
-	public static void writeToFile(String fileName, RedBlackTree<Member> gymData) {
+	public static void writeToFile(String fileName, RedBlackTree<Member1> gymData) {
 		Scanner sn = new Scanner(System.in);
 		File file = null;
 		FileWriter writer = null;

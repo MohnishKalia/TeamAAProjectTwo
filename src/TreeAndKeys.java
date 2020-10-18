@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class TreeAndKeys {
 
-	private RedBlackTree<Member> tree;
+	private RedBlackTree<Member1> tree;
 	private ArrayList<Long> keys;
 
-	public TreeAndKeys(RedBlackTree<Member> tree, ArrayList<Long> keys) {
+	public TreeAndKeys(RedBlackTree<Member1> tree, ArrayList<Long> keys) {
 		this.tree = tree;
 		this.keys = keys;
 	}
 
-	public RedBlackTree<Member> getTree() {
+	public RedBlackTree<Member1> getTree() {
 		return tree;
 	}
 
