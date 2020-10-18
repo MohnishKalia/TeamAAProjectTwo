@@ -4,10 +4,9 @@
 // Team: AA
 // TA: Sophie Stephenson
 // Lecturer: Florian Heimerl
-// Notes to Grader: n/a
-
-import java.time.LocalTime;
-
+// Notes to Grader: The team decided to not maintain the time that the member
+//is added, rather a retrieve from save will set that time for all of the
+//saved members
 
 public class State1{
     String file = "log.csv";
@@ -24,8 +23,7 @@ public class State1{
         if(wiscID < Long.valueOf(1000000000*10) && wiscID > Long.valueOf(999999999)){
             throw new IllegalArgumentException("WiscID was not 9 digits long or had a starting digit of 0.");
         }
-        LocalTime time = LocalTime.now();
-        tree.insert(new Member1(wiscID, name, yearInSchool, time));
+        tree.insert(new Member1(wiscID, name, yearInSchool));
     }
     public Member1 getMember(long wiscID) throws IllegalArgumentException{
         Member1 memberToReturn = null;
@@ -63,22 +61,15 @@ public class State1{
         return memberToReturn;
     }
 
-    /*
-    TODO:
-        Member getMember(long wiscID)
-        void insertMember(long wiscID, String name, SchoolYear yearInSchool)
-        String toString()
-        save()
 
-     */
 
     String toReturn = "";
     @Override
     public String toString(){
         toReturn = "";
-        inOrderTraversal(currentMember -> toReturn += currentMember+"\n");
+        inOrderTraversal(currentMember -> toReturn += "\n"+currentMember);
 
-        return toReturn;
+        return toReturn.trim();
     }
 
     public static interface Traverser<Member1>{
