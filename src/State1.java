@@ -22,7 +22,7 @@ public class State1{
      * toReturn is a String that will be populated during a traversal
      *     to return all the members
      */
-    String file = "member.csv";
+    String file = "members.csv";
     private RedBlackTree<Member1> tree;
     String toReturn;
 
