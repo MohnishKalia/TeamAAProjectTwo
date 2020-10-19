@@ -1,3 +1,12 @@
+// --== CS400 File Header Information ==--
+// Name: Margaret Shen
+// Email: mshen42@wisc.edu
+// Team: AA
+// Role: DataWrangler1
+// TA: Sophie Stephenson
+// Lecturer: Gary Dahl
+// Notes to Grader: <optional extra notes>
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -27,6 +36,7 @@ public class DataWrangler1 {
 				line = scnr.nextLine();
 				String[] data = line.split(csvSplit);
 
+				// makes sure that any extra whitespace is gotten rid of
 				for (int i = 0; i < data.length; i++) {
 					data[i].strip();
 				}
@@ -47,7 +57,6 @@ public class DataWrangler1 {
 				scnr.close();
 			}
 		}
-
 		return tree;
 	}
 
@@ -60,49 +69,57 @@ public class DataWrangler1 {
 	 */
 	public static void write(FileWriter writer, RedBlackTree<Member1> gymData) throws IOException {
 		writer.write("wiscID,name,year\n"); // header
-		String treeData = gymData.toString().replace("[", "").replace("]", "");
-		String[] data = treeData.split(",");
+		String treeData = gymData.toString().replace("[", "").replace("]", ""); // deletes the brackets at the ends of the string
+		String[] data = treeData.split(","); // splits string by comma
+
+		// writes the data to the file
 		for (int i = 0; i < data.length; i++) {
-			data[i].strip();
-			writer.write(data[i]);
+			data[i].strip(); // makes sure any extra whitespace is removed
+			writer.write(data[i]); // writes the data in the file
 			if ((i + 1) % 3 == 0) {
-				writer.write("\n");
+				writer.write("\n"); // adds a new line after every 3 entries
 				continue;
 			}
 			if (i < data.length) {
-				writer.write(",");
+				writer.write(","); // adds a comma after every entry except the last one
 			}
 		}
 	}
 
 	public static void writeToFile(RedBlackTree<Member1> gymData) {
-		String fileName = "members.csv";
+		String fileName = "members.csv"; // file name
 
+		// defines several objects (to be initalized later)
 		File file = null;
 		FileWriter writer = null;
 		boolean fileExists = false;
 
 		try {
-			file = new File(fileName);
+			file = new File(fileName); // initializes file object
 			if (!file.createNewFile()) {
 				fileExists = true;
 			}
-			writer = new FileWriter(file);
-			write(writer, gymData);
+			writer = new FileWriter(file); // initializes the file writer
+			write(writer, gymData); // writes to the file
+
+			// prints out informative message
 			if (fileExists) {
 				System.out.println(fileName + " successfully updated.");
 			} else {
 				System.out.println(fileName + " successfully created.");
 			}
+
 		} catch (IOException e) {
 			System.out.println("Error");
 			e.printStackTrace();
 		} finally {
 			try {
 				if (writer != null) {
-					writer.close();
+					writer.close(); // closes writer
 				}
 			} catch (Exception e) {
+				System.out.println("Error");
+				e.printStackTrace();
 			}
 		}
 	}
