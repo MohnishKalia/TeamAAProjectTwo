@@ -12,8 +12,7 @@ public class DataWrangler1 {
 	 * @return TreeAndKeys object that stores the red black tree and a list of keys
 	 */
 	public static RedBlackTree<Member1> readFile() {
-		String fileName = System.getProperty("user.dir");
-		fileName += File.separator + "src" + File.separator + "gym_data.csv";
+		String fileName = "members.csv";
 
 		RedBlackTree<Member1> tree = new RedBlackTree<>(); // tree where the data will be stored
 		Scanner scnr = null; // reads the csv file
@@ -77,10 +76,8 @@ public class DataWrangler1 {
 	}
 
 	public static void writeToFile(RedBlackTree<Member1> gymData) {
-		String fileName = System.getProperty("user.dir");
-		fileName += File.separator + "src" + File.separator + "gym_data.csv";
+		String fileName = "members.csv";
 
-		Scanner sn = new Scanner(System.in);
 		File file = null;
 		FileWriter writer = null;
 		boolean fileExists = false;
@@ -107,7 +104,6 @@ public class DataWrangler1 {
 				}
 			} catch (Exception e) {
 			}
-			sn.close();
 		}
 	}
 }
