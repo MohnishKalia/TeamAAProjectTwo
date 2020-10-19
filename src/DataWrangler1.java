@@ -16,7 +16,6 @@ public class DataWrangler1 {
 		fileName += File.separator + "src" + File.separator + "gym_data.csv";
 
 		RedBlackTree<Member1> tree = new RedBlackTree<>(); // tree where the data will be stored
-		ArrayList<Long> keys = new ArrayList<>(); // array list where the keys will be stored
 		Scanner scnr = null; // reads the csv file
 		String csvSplit = ",";
 		String line = "";
