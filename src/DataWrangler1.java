@@ -13,7 +13,7 @@ public class DataWrangler1 {
 	 */
 	public static RedBlackTree<Member1> readFile() {
 		String fileName = System.getProperty("user.dir");
-		fileName += File.separator + "src" + File.separator + "gym_data.csv";
+		fileName += File.separator + "src" + File.separator + "members.csv";
 
 		RedBlackTree<Member1> tree = new RedBlackTree<>(); // tree where the data will be stored
 		Scanner scnr = null; // reads the csv file
@@ -78,7 +78,7 @@ public class DataWrangler1 {
 
 	public static void writeToFile(RedBlackTree<Member1> gymData) {
 		String fileName = System.getProperty("user.dir");
-		fileName += File.separator + "src" + File.separator + "gym_data.csv";
+		fileName += File.separator + "src" + File.separator + "members.csv";
 
 		Scanner sn = new Scanner(System.in);
 		File file = null;
@@ -93,9 +93,9 @@ public class DataWrangler1 {
 			writer = new FileWriter(file);
 			write(writer, gymData);
 			if (fileExists) {
-				System.out.println(fileName + " successfully updated.");
+				System.out.println("members.csv successfully updated.");
 			} else {
-				System.out.println(fileName + " successfully created.");
+				System.out.println("members.csv successfully created.");
 			}
 		} catch (IOException e) {
 			System.out.println("Error");
