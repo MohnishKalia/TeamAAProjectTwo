@@ -90,9 +90,9 @@ public class DataWrangler1 {
 			writer = new FileWriter(file);
 			write(writer, gymData);
 			if (fileExists) {
-				System.out.println("members.csv successfully updated.");
+				System.out.println(fileName + " successfully updated.");
 			} else {
-				System.out.println("members.csv successfully created.");
+				System.out.println(fileName + " successfully created.");
 			}
 		} catch (IOException e) {
 			System.out.println("Error");
