@@ -9,7 +9,6 @@
 package src;
 
 import java.time.LocalDateTime; // Used to create the time
-import java.time.format.DateTimeFormatter; // Used to format the time
 
 /**
  * This class implements the Member to be stored in the Gym tracker. This member
@@ -25,11 +24,11 @@ public class Member2 implements Comparable<Member2>{
    * The member can be one of five categories, with other including faculty and
    * fifth years
    */
-  private enum SchoolYear {
-    FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER
+  enum SchoolYear {
+    FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER;
   }
   
-  private Long wiscID; // The ID of the member, must be 9 digits long
+  Long wiscID; // The ID of the member, must be 9 digits long
   private String memberName; // name of the member
   private SchoolYear year; // the year in school of the member
   private LocalDateTime time; // the time the member entered the gym
