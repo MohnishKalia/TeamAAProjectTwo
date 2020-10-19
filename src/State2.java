@@ -7,7 +7,6 @@
 // Lecturer: Florian Heimerl
 // Notes to Grader: 
 
-package src;
 
 /**
  * This class implements the State of the Gym tracker and loads the Red Black
