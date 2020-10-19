@@ -75,7 +75,7 @@ public class Test2{
 	 * Helper method for inserting expected members
 	 * from CSV file
 	 */
-	private static void expectedMembers(State expected){
+	private static void expectedMembers(State1 expected){
 	  expected.insertMember(854148484L,"Johnny Appleseed",Member1.SchoolYear.FRESHMAN);
 	  expected.insertMember(953089646L,"Paul Blart",Member1.SchoolYear.JUNIOR);
 	  expected.insertMember(103751606L,"Kristin Yang",Member1.SchoolYear.SOPHOMORE);
