@@ -11,7 +11,7 @@ public class DataWrangler1 {
 	 * @param filePath path of the csv file where the gym data is stored
 	 * @return TreeAndKeys object that stores the red black tree and a list of keys
 	 */
-	public static TreeAndKeys readFile() {
+	public static RedBlackTree<Member1> readFile() {
 		String fileName = System.getProperty("user.dir");
 		fileName += File.separator + "src" + File.separator + "gym_data.csv";
 
@@ -49,10 +49,8 @@ public class DataWrangler1 {
 				scnr.close();
 			}
 		}
-
-		// creates a new tree and keys object with the filled tree and keys array
-		TreeAndKeys treeAndKeys = new TreeAndKeys(tree, keys);
-		return treeAndKeys;
+		
+		return tree;
 	}
 
 	/**
