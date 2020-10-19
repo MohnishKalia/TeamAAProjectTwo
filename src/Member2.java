@@ -7,7 +7,6 @@
 // Lecturer: Florian Heimerl
 // Notes to Grader: 
 
-package src;
 
 import java.time.LocalDateTime; // Used to create the time
 
