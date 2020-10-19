@@ -2,6 +2,7 @@
 // Name: Alexander Ulate
 // Email: ulate@wisc.edu
 // Team: AA
+// Role: Back End 2
 // TA: Sophie Stephenson
 // Lecturer: Florian Heimerl
 // Notes to Grader: 
