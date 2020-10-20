@@ -2,11 +2,11 @@
 // Name: Alexander Ulate
 // Email: ulate@wisc.edu
 // Team: AA
+// Role: Back End 2
 // TA: Sophie Stephenson
 // Lecturer: Florian Heimerl
 // Notes to Grader: 
 
-package src;
 
 /**
  * This class implements the State of the Gym tracker and loads the Red Black
