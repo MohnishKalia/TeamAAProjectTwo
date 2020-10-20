@@ -62,7 +62,7 @@ public class DataWrangler1 {
 	 * @param writer  file writer
 	 * @param gymData tree storing the member objects
 	 */
-	private static void write(FileWriter writer, RedBlackTree<Member1> gymData){
+	private static void write(FileWriter writer, RedBlackTree<Member1> gymData) throws IOException {
 		writer.write("wiscID,name,year\n"); // header
 		String treeData = gymData.toString().replace("[", "").replace("]", ""); // deletes the brackets at the ends of the string
 		String[] data = treeData.split(","); // splits string by comma
