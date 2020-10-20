@@ -17,13 +17,10 @@ import java.util.Scanner;
 public class DataWrangler1 {
 
 	/**
-<<<<<<< HEAD
 	 * Method for reading the members.csv file and stores the information into a red black tree 
 	 * 
-=======
 	 * Method for reading the members.csv file and stores the information into a red black tree
 	 *
->>>>>>> DataWrangler1
 	 * @param filePath path of the csv file where the gym data is stored
 	 * @return RedBlackTree<Member1> returns a red black tree that contains the
 	 *         stored member data
@@ -52,11 +49,11 @@ public class DataWrangler1 {
 				tree.insert(m); // inserts the member into the tree
 			}
 		} catch (Exception e) {
-			System.out.println("Error");
+			System.err.println("Error");
 			e.printStackTrace();
 		} finally {
 			if (scnr != null) {
-				scnr.close();
+				scnr.close(); // closes scanner
 			}
 		}
 		return tree;
@@ -70,10 +67,8 @@ public class DataWrangler1 {
 	 */
 	private static void write(FileWriter writer, RedBlackTree<Member1> gymData){
 		writer.write("wiscID,name,year\n"); // header
-		String treeData = gymData.toString().replace("[", "").replace("]", ""); // deletes the brackets at the ends of
-																				// the string
+		String treeData = gymData.toString().replace("[", "").replace("]", ""); // deletes the brackets at the ends of the string
 		String[] data = treeData.split(","); // splits string by comma
-
 		// writes the data to the file
 		for (int i = 0; i < data.length; i++) {
 			data[i].strip(); // makes sure any extra whitespace is removed
@@ -90,13 +85,10 @@ public class DataWrangler1 {
 
 	/**
 	 * Takes a red black tree as a parameter and writes the data into a csv file
-<<<<<<< HEAD
 	 * 
 	 * @param gymData tree that contains data to be written into the csv file 
-=======
 	 *
 	 * @param gymData tree that contains data to be written into the csv file
->>>>>>> DataWrangler1
 	 */
 	public static void writeToFile(RedBlackTree<Member1> gymData) {
 		String fileName = "members.csv"; // file name
@@ -109,19 +101,10 @@ public class DataWrangler1 {
 		try {
 			file = new File(fileName); // initializes file object
 			if (!file.createNewFile()) {
-<<<<<<< HEAD
 				fileExists = true; // checks if a new file is created 
 			}
 			writer = new FileWriter(file); // initializes the file writer
 			write(writer, gymData); // writes to the file
-			
-=======
-				fileExists = true; // checks if a new file is created
-			}
-			writer = new FileWriter(file); // initializes the file writer
-			write(writer, gymData); // writes to the file
-
->>>>>>> DataWrangler1
 			if (fileExists) { // prints out informative message
 				System.out.println(fileName + " successfully updated.");
 			} else {
