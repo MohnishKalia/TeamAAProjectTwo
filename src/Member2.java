@@ -2,11 +2,11 @@
 // Name: Alexander Ulate
 // Email: ulate@wisc.edu
 // Team: AA
+// Role: Back End 2
 // TA: Sophie Stephenson
 // Lecturer: Florian Heimerl
 // Notes to Grader: 
 
-package src;
 
 import java.time.LocalDateTime; // Used to create the time
 
@@ -28,7 +28,7 @@ public class Member2 implements Comparable<Member2>{
     FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER;
   }
   
-  Long wiscID; // The ID of the member, must be 9 digits long
+  private Long wiscID; // The ID of the member, must be 9 digits long
   private String memberName; // name of the member
   private SchoolYear year; // the year in school of the member
   private LocalDateTime time; // the time the member entered the gym
