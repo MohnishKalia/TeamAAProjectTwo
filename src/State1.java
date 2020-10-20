@@ -17,12 +17,10 @@ public class State1{
     /**
      * Instance Fields
      *
-     * file is the file path that is passed to the DataWrangler class
      * tree is the tree that holds all the current members
      * toReturn is a String that will be populated during a traversal
      *     to return all the members
      */
-    String file = "members.csv";
     private RedBlackTree<Member1> tree;
     String toReturn;
 
@@ -31,7 +29,7 @@ public class State1{
      *      which should return a RedBlackTree object.
      */
     public State1(){
-        tree = DataWrangler1.readFile(file);
+        tree = DataWrangler1.readFile();
     }
 
     /**
@@ -47,8 +45,10 @@ public class State1{
     public void insertMember(long wiscID, String name, Member1.SchoolYear yearInSchool)
             throws IllegalArgumentException{
 
+        //string to test the length of the wiscID entered
+        String lengthTester = Long.toString(wiscID);
         //Makes sure that the wiscID is 9 digits long. First digit must not be zero.
-        if(wiscID < Long.valueOf(1000000000*10) && wiscID > Long.valueOf(999999999)){
+        if(lengthTester.length() != 9){
             throw new IllegalArgumentException("WiscID was not 9 digits long or had a starting digit of 0.");
         }
 
@@ -163,7 +163,7 @@ public class State1{
      */
     public void save() {
         if(tree.root !=null)
-            DataWrangler1.writeToFile(file,tree);
+            DataWrangler1.writeToFile(tree);
     }
 
 }
