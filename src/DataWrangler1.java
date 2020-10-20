@@ -110,7 +110,7 @@ public class DataWrangler1 {
 				System.out.println(fileName + " successfully created.");
 			}
 		} catch (IOException e) {
-			System.out.println("Error");
+			System.err.println("Error");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -118,7 +118,7 @@ public class DataWrangler1 {
 					writer.close(); // closes writer
 				}
 			} catch (Exception e) {
-				System.out.println("Error");
+				System.err.println("Error");
 				e.printStackTrace();
 			}
 		}
