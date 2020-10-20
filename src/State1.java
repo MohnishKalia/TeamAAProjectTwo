@@ -17,7 +17,6 @@ public class State1{
     /**
      * Instance Fields
      *
-     * file is the file path that is passed to the DataWrangler class
      * tree is the tree that holds all the current members
      * toReturn is a String that will be populated during a traversal
      *     to return all the members
