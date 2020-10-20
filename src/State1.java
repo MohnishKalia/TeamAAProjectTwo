@@ -22,7 +22,6 @@ public class State1{
      * toReturn is a String that will be populated during a traversal
      *     to return all the members
      */
-    String file = "members.csv";
     private RedBlackTree<Member1> tree;
     String toReturn;
 
@@ -31,7 +30,7 @@ public class State1{
      *      which should return a RedBlackTree object.
      */
     public State1(){
-        tree = DataWrangler1.readFile(file);
+        tree = DataWrangler1.readFile();
     }
 
     /**
@@ -163,7 +162,7 @@ public class State1{
      */
     public void save() {
         if(tree.root !=null)
-            DataWrangler1.writeToFile(file,tree);
+            DataWrangler1.writeToFile(tree);
     }
 
 }
