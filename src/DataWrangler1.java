@@ -17,8 +17,6 @@ import java.util.Scanner;
 public class DataWrangler1 {
 
 	/**
-	 * Method for reading the members.csv file and stores the information into a red black tree 
-	 * 
 	 * Method for reading the members.csv file and stores the information into a red black tree
 	 *
 	 * @param filePath path of the csv file where the gym data is stored
@@ -85,8 +83,6 @@ public class DataWrangler1 {
 
 	/**
 	 * Takes a red black tree as a parameter and writes the data into a csv file
-	 * 
-	 * @param gymData tree that contains data to be written into the csv file 
 	 *
 	 * @param gymData tree that contains data to be written into the csv file
 	 */
@@ -101,7 +97,7 @@ public class DataWrangler1 {
 		try {
 			file = new File(fileName); // initializes file object
 			if (!file.createNewFile()) {
-				fileExists = true; // checks if a new file is created 
+				fileExists = true; // checks if a new file is created
 			}
 			writer = new FileWriter(file); // initializes the file writer
 			write(writer, gymData); // writes to the file
