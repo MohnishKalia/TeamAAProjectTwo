@@ -17,7 +17,6 @@ public class State1{
     /**
      * Instance Fields
      *
-     * file is the file path that is passed to the DataWrangler class
      * tree is the tree that holds all the current members
      * toReturn is a String that will be populated during a traversal
      *     to return all the members
@@ -46,8 +45,10 @@ public class State1{
     public void insertMember(long wiscID, String name, Member1.SchoolYear yearInSchool)
             throws IllegalArgumentException{
 
+        //string to test the length of the wiscID entered
+        String lengthTester = Long.toString(wiscID);
         //Makes sure that the wiscID is 9 digits long. First digit must not be zero.
-        if(wiscID < Long.valueOf(1000000000*10) && wiscID > Long.valueOf(999999999)){
+        if(lengthTester.length() != 9){
             throw new IllegalArgumentException("WiscID was not 9 digits long or had a starting digit of 0.");
         }
 
