@@ -5,7 +5,8 @@
 // Role: Test Engineer 1
 // TA: Sophie Stephenson
 // Lecturer: Florian Heimerl
-// Notes to Grader: <optional extra notes>
+// Notes to Grader: IMPORTANT: These tests will only pass if the provided
+// members.csv file is included
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,157 +17,108 @@ import static org.junit.jupiter.api.Assertions.*;
  * by calling the methods implemented by the State,
  * and checking to see if their outputs match
  * their expected outputs
+ *
+ * IMPORTANT: These tests will only pass if the provided
+ * members.csv file is included
  */
 public class Test1 {
 
-    /**
-     * This method tests the creation of a new tree
-     * by adding a root node
-     * It tests to make sure the tree contains the member added
-     * as the root node, and nothing else
-     */
-    @Test
-    public void testAddRoot() {
-        try {
-            State1 state = new State1();
-            long wiscID = 123456789;
-            String name = "Granthony";
-            Member1.SchoolYear year = Member1.SchoolYear.SOPHOMORE;
-            Member1 member = new Member1(wiscID, name, year);
-            state.insertMember(wiscID, name, year);
-            assertEquals(member.toString(), state.toString());
+        /**
+         * This method tests to make sure the CSV file
+         * is imported with the proper format
+         * It creates a null tree, then fills it
+         * with the initial values of the CSV file, and tests
+         * to make sure they are equal to a constructed tree
+         */
+        @Test
+        public void testCSVFormat() {
+            State1 initial = null;
+            fillTree(initial);
+            State1 test = new State1();
+            assertEquals(initial.toString(), test.toString(), "Members do not match expected members");
         }
-        catch (Exception e) {
-            System.out.println("Unanticipated Exception Caught");
-            fail();
+
+        /**
+         * This method tests to make sure the tree will
+         * accept attempted additions of members with
+         * good wiscID
+         * No Exceptions should be thrown if
+         * a member with a good wiscID is added
+         */
+        @Test
+        public void testAddGoodMember() {
+            State1 test = new State1();
+            assertDoesNotThrow(() -> test.insertMember(100000009L, "Captain", Member1.SchoolYear.SENIOR));
+
+            assertDoesNotThrow(() -> test.insertMember(999999999L, "Franklin Delano Roosevelt", Member1.SchoolYear.OTHER));
+
+            assertDoesNotThrow(() -> test.insertMember(123456789L, "Happy Gilmore", Member1.SchoolYear.JUNIOR));
         }
-    }
+
+        /**
+         * This method tests to make sure the tree will
+         * not accept attempted additions of members with
+         * bad wiscID
+         * An IllegalArgumentException should be thrown if
+         * a member with a bad wiscID is added
+         */
+        @Test
+        public void testAddBadMember() {
+            State1 test = new State1();
+            assertThrows(IllegalArgumentException.class,
+                    () -> test.insertMember(6090L, "Granthony", Member1.SchoolYear.SOPHOMORE));
+
+            assertThrows(IllegalArgumentException.class,
+                    () -> test.insertMember(002345678L, "Gandalf The Grey", Member1.SchoolYear.SENIOR));
+
+            assertThrows(IllegalArgumentException.class,
+                    () -> test.insertMember(555551L, "Becky", Member1.SchoolYear.FRESHMAN));
+        }
+
+        /**
+         * This method tests to make sure the tree
+         * will accept attempted getMember() calls
+         * with wiscID that are in the tree
+         * No exceptions should be thrown if a
+         * good wiscID is used with getMember()
+         */
+        @Test
+        public void testGetGoodMember() {
+            State1 test = new State1();
+            assertDoesNotThrow(() -> test.getMember(854148484L));
+
+            assertDoesNotThrow(() -> test.getMember(953089646L));
+
+            assertDoesNotThrow(() -> test.getMember(103751606L));
+        }
+
+        /**
+         * This method tests to make sure the tree
+         * will not accept attempted getMember() calls
+         * with wiscID that are not in the tree
+         * IllegalArgumentException should be thrown if
+         * a bad wiscID is used with getMember()
+         */
+        @Test
+        public void testGetBadMember() {
+            State1 test = new State1();
+            assertThrows(IllegalArgumentException.class, () -> test.getMember(162636465L));
+
+            assertThrows(IllegalArgumentException.class, () -> test.getMember(100000005L));
+
+            assertThrows(IllegalArgumentException.class, () -> test.getMember(447733889L));
+        }
 
     /**
-     * This method tests to make sure members with bad
-     * input parameters are not accepted
-     * One good member is added, then two bad ones. This method
-     * checks to make sure the tree only contains the good member
-     * after attempting to add the two bad ones.
+     * Private helper method
+     * This method inserts all the initial members into the RedBlackTree
+     * @param initial The initial RedBlackTree, prior to any changes
      */
-    @Test
-    public void testAddMemberBadInput() {
-        State1 state = new State1();
-        long wiscID = 123456789;
-        String name = "Granthony";
-        Member1.SchoolYear year = Member1.SchoolYear.SOPHOMORE;
-        Member1 member = new Member1(wiscID, name, year);
-        state.insertMember(wiscID, name, year);
-
-        try {
-            wiscID = 24;
-            name = "Franklin";
-            year = Member1.SchoolYear.FRESHMAN;
-            state.insertMember(wiscID, name, year);
-        }
-        catch(IllegalArgumentException e) {
-            assertEquals(member.toString(), state.toString());
-        }
-
-        try {
-            wiscID = 33333333;
-            name = "Kevin Malone";
-            year = Member1.SchoolYear.OTHER;
-            state.insertMember(wiscID, name, year);
-        }
-        catch(IllegalArgumentException e) {
-            assertEquals(member.toString(), state.toString());
-        }
-        catch (Exception e) {
-            System.out.println("Unanticipated Exception Caught");
-            fail();
-        }
-    }
-
-    /**
-     * This method tests to make sure members with good
-     * input parameters are added correctly
-     * Adds 7 members, and makes sure the concantenation of
-     * the member.toString() is equal to the state.toString()
-     */
-    @Test
-    public void testAddMember() {
-        State1 state = new State1();
-        long wiscID = 123456700;
-        String name = "Name: ";
-        Member1.SchoolYear year = Member1.SchoolYear.SOPHOMORE;
-        String expected = "";
-        Member1 member = new Member1(wiscID, name, year);
-        for (int i = 0; i < 7; i++) {
-            state.insertMember(wiscID + i, name + i, year);
-            expected += "\n" + new Member1(wiscID + i, name + i, year).toString();
-        }
-        assertEquals(expected.trim(), state.toString().trim());
-    }
-
-    /**
-     * This method tests to make sure the CSV file
-     * is correctly loaded into the program
-     * It creates a tree, adds 7 members to it, and then saves it
-     * Then it creates a new state without adding any members,
-     * and tests to see if they are equal
-     */
-    @Test
-    public void testCSVImport() {
-        State1 state = new State1();
-        long wiscID = 123456700;
-        String name = "Name: ";
-        Member1.SchoolYear year = Member1.SchoolYear.SOPHOMORE;
-        String expected = "";
-        Member1 member = new Member1(wiscID, name, year);
-        for (int i = 0; i < 7; i++) {
-            state.insertMember(wiscID + i, name + i, year);
-            expected += "\n" + new Member1(wiscID + i, name + i, year).toString();
-        }
-        state.save();
-        State1 afterSave = new State1();
-        assertEquals(state.toString().trim(), afterSave.toString().trim());
-    }
-
-    /**
-     * This method tests to make sure the get()
-     * method works properly, and returns the correct
-     * member
-     * It adds 7 acceptable members to the tree, then
-     * calls the getMember() method on two of them.
-     * It also calls the getMember() method on a member
-     * that is not in the tree.
-     * If the members returned are not correct, or if an error
-     * is not thrown after the third call, this test fails
-     */
-    @Test
-    public void testGetMember() {
-        State1 state = new State1();
-        long wiscID = 123456700;
-        String name = "Name: ";
-        Member1.SchoolYear year = Member1.SchoolYear.SOPHOMORE;
-        String expected = "";
-        Member1 member = new Member1(wiscID, name, year);
-        for (int i = 0; i < 7; i++) {
-            state.insertMember(wiscID + i, name + i, year);
-            expected += "\n" + new Member1(wiscID + i, name + i, year).toString();
-        }
-        Member1 memA = state.getMember(123456704);
-        assertEquals(memA.toString().substring(0,9), "123456704");
-
-        Member1 memB = state.getMember(123456701);
-        assertEquals(memB.toString().substring(0,9), "123456701");
-
-        try {
-            Member1 memC = state.getMember(123456735);
-            fail();
-        }
-        catch(IllegalArgumentException e) {
-
-        }
-        catch(Exception e) {
-            System.out.println("Unanticipated Exception Caught");
-            fail();
-        }
+    private static void fillTree(State1 initial) {
+        initial.insertMember(854148484L, "Johnny Appleseed", Member1.SchoolYear.FRESHMAN);
+        initial.insertMember(953089646L, "Paul Blart", Member1.SchoolYear.JUNIOR);
+        initial.insertMember(103751606L, "Kristin Yang", Member1.SchoolYear.SOPHOMORE);
+        initial.insertMember(490885798L, "Brad Hayes", Member1.SchoolYear.FRESHMAN);
+        initial.insertMember(840986425L, "Cherie Corrigan", Member1.SchoolYear.OTHER);
     }
 }
