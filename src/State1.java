@@ -17,12 +17,10 @@ public class State1{
     /**
      * Instance Fields
      *
-     * file is the file path that is passed to the DataWrangler class
      * tree is the tree that holds all the current members
      * toReturn is a String that will be populated during a traversal
      *     to return all the members
      */
-    String file = "members.csv";
     private RedBlackTree<Member1> tree;
     String toReturn;
 
@@ -31,7 +29,7 @@ public class State1{
      *      which should return a RedBlackTree object.
      */
     public State1(){
-        tree = DataWrangler1.readFile(file);
+        tree = DataWrangler1.readFile();
     }
 
     /**
@@ -163,7 +161,7 @@ public class State1{
      */
     public void save() {
         if(tree.root !=null)
-            DataWrangler1.writeToFile(file,tree);
+            DataWrangler1.writeToFile(tree);
     }
 
 }
