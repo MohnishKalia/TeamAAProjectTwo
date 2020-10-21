@@ -74,7 +74,7 @@ public class DataWrangler1 {
 				writer.write("\n"); // adds a new line after every 3 entries
 				continue;
 			}
-			if (i == 4){
+			if (i == 3) {
 				continue; // skips the 4th entry (time)
 			}
 			if (i < data.length) {
