@@ -1,4 +1,4 @@
-// --== Test Gym Member Tracker ==--
+// --== Test 2==--
 // Name: Christopher Nguyen
 // Email: cnguyen29@wisc.edu
 // Role: Test Engineer 2
@@ -9,19 +9,18 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 /**
  * This class tests the implementation of the State1 class
  */
 public class Test2 {
 	/**
-	 * Tests importation of the CSV file and checks for correct members
+	 * Tests importation of the CSV file and checks for empty file
 	 */
 	@Test
 	public void testImportCSV() {
-		State1 expected = null;
-		expectedMembers(expected);
 		State1 returned = new State1();
-		assertEquals(expected.toString(), returned.toString(), "Members do not match expected members");
+		assertNotEquals(returned.toString(), "", "Members do not match expected members");
 	}
 
 	/**
@@ -60,17 +59,6 @@ public class Test2 {
 	public void testValidGetMember() {
 		State1 state = new State1();
 		assertDoesNotThrow(() -> state.getMember(854148484L));
-	}
-
-	/**
-	 * Helper method for inserting expected members from CSV file
-	 */
-	private static void expectedMembers(State1 expected) {
-		expected.insertMember(854148484L, "Johnny Appleseed", Member1.SchoolYear.FRESHMAN);
-		expected.insertMember(953089646L, "Paul Blart", Member1.SchoolYear.JUNIOR);
-		expected.insertMember(103751606L, "Kristin Yang", Member1.SchoolYear.SOPHOMORE);
-		expected.insertMember(490885798L, "Brad Hayes", Member1.SchoolYear.FRESHMAN);
-		expected.insertMember(840986425L, "Cherie Corrigan", Member1.SchoolYear.OTHER);
 	}
 
 }
