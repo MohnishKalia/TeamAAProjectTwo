@@ -75,7 +75,7 @@ public class DataWrangler1 {
 			}
 			data[i] = data[i].strip(); // makes sure any extra whitespace is removed
 			writer.write(data[i]); // writes the data in the file
-			if (i < data.length - 1) {
+			if (i < data.length) {
 				writer.write(","); // adds a comma after every entry except the last one
 			}
 		}
