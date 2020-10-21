@@ -74,8 +74,8 @@ public class DataWrangler1 {
 				writer.write("\n"); // adds a new line after every 3 entries
 				continue;
 			}
-			if (i == 4) {
-				continue; // skips the 4th entry (time) 
+			if (i == 3) {
+				continue; // skips the 4th entry (time)
 			}
 			if (i < data.length) {
 				writer.write(","); // adds a comma after every entry except the last one

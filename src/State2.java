@@ -114,11 +114,11 @@ public class State2 {
   private boolean print(RedBlackTree.Node<Member2> node) {
     if (node != null) { // Check that it was passed a valid node
       if (node.leftChild != null) {
-        return print(node.leftChild);
+        print(node.leftChild);
       } 
-      this.printResult = "\n" + node.data.toString();
+      this.printResult = this.printResult + "\n" + node.data.toString();
       if (node.rightChild != null) {
-        return print(node.rightChild);
+        print(node.rightChild);
       } 
       return true;
     }
