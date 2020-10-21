@@ -1,4 +1,3 @@
-package src;
 // --== CS400 File Header Information ==--
 // Name: Margaret Shen
 // Email: mshen42@wisc.edu
@@ -69,12 +68,15 @@ public class DataWrangler1 {
 		String[] data = treeData.split(","); // splits string by comma
 		// writes the data to the file
 		for (int i = 0; i < data.length; i++) {
-			if((i+1) % 4 == 0) {
-				writer.write("\n");
+			data[i].strip(); // makes sure any extra whitespace is removed
+			writer.write(data[i]); // writes the data in the file
+			if ((i + 1) % 3 == 0) {
+				writer.write("\n"); // adds a new line after every 3 entries
 				continue;
 			}
-			data[i] = data[i].strip(); // makes sure any extra whitespace is removed
-			writer.write(data[i]); // writes the data in the file
+			if (i == 3) {
+				continue; // skips the 4th entry (time)
+			}
 			if (i < data.length) {
 				writer.write(","); // adds a comma after every entry except the last one
 			}
