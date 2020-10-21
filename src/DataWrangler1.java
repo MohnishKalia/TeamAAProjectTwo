@@ -1,4 +1,3 @@
-package src;
 // --== CS400 File Header Information ==--
 // Name: Margaret Shen
 // Email: mshen42@wisc.edu
