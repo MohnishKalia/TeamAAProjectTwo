@@ -69,7 +69,7 @@ public class Test1 {
                     () -> test.insertMember(6090L, "Granthony", Member1.SchoolYear.SOPHOMORE));
 
             assertThrows(IllegalArgumentException.class,
-                    () -> test.insertMember(002345678L, "Gandalf The Grey", Member1.SchoolYear.SENIOR));
+                    () -> test.insertMember(2345678L, "Gandalf The Grey", Member1.SchoolYear.SENIOR));
 
             assertThrows(IllegalArgumentException.class,
                     () -> test.insertMember(555551L, "Becky", Member1.SchoolYear.FRESHMAN));
