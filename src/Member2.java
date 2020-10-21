@@ -57,7 +57,7 @@ public class Member2 implements Comparable<Member2>{
   public String toString() {
     String result = "" + this.wiscID + "," + this.memberName + "," + this.year;
     result = result + "," + time.toString().replace('T',' ');
-    return result; 
+    return result.trim(); 
   }
   
   /**
