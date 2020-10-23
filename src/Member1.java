@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
  * These are the data of the nodes to be passed into the tree.
  * The key (or comparable) is the wiscID.
  */
-public class Member1 implements Comparable<Member1> {
+public class Member1 implements Member, Comparable<Member1> {
 
     /**
      * Instance fields for the data that each Member1 contains
@@ -28,7 +28,6 @@ public class Member1 implements Comparable<Member1> {
      * name is the name of the member
      * time is the time of the local machine when a member is added
      */
-    enum SchoolYear {FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER}
     Long wiscID;
     String name;
     SchoolYear yearInSchool;
@@ -75,6 +74,27 @@ public class Member1 implements Comparable<Member1> {
         String formattedDate = time.format(format);
         //Returns the member in a .csv format
         return (wiscID.toString()+","+name+","+yearInSchool+","+formattedDate);
+    }
+
+    @Override
+    public long getWiscId() {
+        return wiscID;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public Member.SchoolYear getSchoolYear() {
+        return yearInSchool;
+    }
+
+    @Override
+    public LocalDateTime getDateTime() {
+        // TODO Auto-generated method stub
+        return time;
     }
 
 

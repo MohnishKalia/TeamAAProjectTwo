@@ -16,7 +16,7 @@
  * @author Alexander Ulate
  *
  */
-public class State2 {
+public class State2 implements State{
   private RedBlackTree<Member2> tree; // The tree where members are stored
   private long idSearch; // The WiscID that is being searched for by getMember()
   private String printResult; // The result of the print() method
@@ -26,7 +26,7 @@ public class State2 {
    * This will call upon opening the application
    */
   public State2() {
-    tree = DataWrangler1.readFile();
+    tree = DataWrangler1.readFile(Member2.class);
   }
   
   /**
@@ -65,7 +65,7 @@ public class State2 {
    * @return returns the Member that was being searched for
    * @throws IllegalArgumentException thrown if the member is not in the tree
    */
-  public Member2 getMember(long wiscId) throws IllegalArgumentException {
+  public Member getMember(long wiscId) throws IllegalArgumentException {
     // Check if tree is empty
     if (empty()) {
       throw new IllegalArgumentException("ERROR: Tree is empty or does not exist!");
@@ -95,7 +95,7 @@ public class State2 {
    * @throws IllegalArgumentException - Thrown when the WiscID is not the correct
    *                                    length or format
    */
-  public void insertMember(long wiscId, String name, Member2.SchoolYear year) throws IllegalArgumentException {
+  public void insertMember(long wiscId, String name, Member.SchoolYear year) throws IllegalArgumentException {
     // Check that the WiscID is formated correctly
     String check = Long.toString(wiscId);
     // Check the length and first digit

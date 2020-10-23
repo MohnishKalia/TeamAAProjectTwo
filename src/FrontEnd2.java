@@ -134,7 +134,7 @@ public class FrontEnd2 {
     /**
      * The state instance that is used for the operations
      */
-    private static final State1 state = new State1();
+    private static final State state = new State2();
 
     public static void add(Scanner input) {
         runWithErrorHandling(() -> {
@@ -148,9 +148,9 @@ public class FrontEnd2 {
 
             System.out.println("Input School Year:");
             // print out the set of enum constants for the user
-            System.out.println(EnumSet.allOf(Member1.SchoolYear.class));
+            System.out.println(EnumSet.allOf(Member.SchoolYear.class));
             printInputPrefix();
-            Member1.SchoolYear yearInSchool = Member1.SchoolYear.valueOf(input.nextLine().toUpperCase());
+            Member.SchoolYear yearInSchool = Member.SchoolYear.valueOf(input.nextLine().toUpperCase());
 
             state.insertMember(wiscID, name, yearInSchool);
             System.out.println("Member inserted!");

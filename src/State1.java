@@ -12,7 +12,7 @@
  * State1 from BackEnd1 on Project 2, Team AA
  * @author Grant Parfrey
  */
-public class State1{
+public class State1 implements State{
 
     /**
      * Instance Fields
@@ -29,7 +29,7 @@ public class State1{
      *      which should return a RedBlackTree object.
      */
     public State1(){
-        tree = DataWrangler1.readFile();
+        tree = DataWrangler1.readFile(Member1.class);
     }
 
     /**
@@ -42,7 +42,7 @@ public class State1{
      *                     with the member.
      * @throws IllegalArgumentException when the wiscID is not the right length.
      */
-    public void insertMember(long wiscID, String name, Member1.SchoolYear yearInSchool)
+    public void insertMember(long wiscID, String name, Member.SchoolYear yearInSchool)
             throws IllegalArgumentException{
 
         //string to test the length of the wiscID entered
@@ -64,7 +64,7 @@ public class State1{
      * @return returns the member object that the user requested
      * @throws IllegalArgumentException when the member does not exist in the tree
      */
-    public Member1 getMember(long wiscID) throws IllegalArgumentException{
+    public Member getMember(long wiscID) throws IllegalArgumentException{
 
         Member1 memberToReturn = null;
         //If the tree is empty, the member does not exist

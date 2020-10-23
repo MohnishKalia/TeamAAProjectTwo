@@ -17,16 +17,7 @@ import java.time.LocalDateTime; // Used to create the time
  * @author Alexander Ulate
  *
  */
-public class Member2 implements Comparable<Member2>{
-
-  /**
-   * This is the implementation of the options for the year in school field
-   * The member can be one of five categories, with other including faculty and
-   * fifth years
-   */
-  enum SchoolYear {
-    FRESHMAN, SOPHOMORE, JUNIOR, SENIOR, OTHER;
-  }
+public class Member2 implements Member, Comparable<Member2>{
   
   protected Long wiscID; // The ID of the member, must be 9 digits long
   private String memberName; // name of the member
@@ -70,5 +61,25 @@ public class Member2 implements Comparable<Member2>{
   @Override
   public int compareTo(Member2 member) {
     return this.wiscID.compareTo(member.wiscID);
+  }
+
+  @Override
+  public long getWiscId() {
+    return wiscID;
+  }
+
+  @Override
+  public String getName() {
+    return memberName;
+  }
+
+  @Override
+  public Member.SchoolYear getSchoolYear() {
+    return year;
+  }
+
+  @Override
+  public LocalDateTime getDateTime() {
+    return time;
   }
 }

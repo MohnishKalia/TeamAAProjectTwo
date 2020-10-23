@@ -22,10 +22,10 @@ public class DataWrangler1 {
 	 * @return RedBlackTree<Member1> returns a red black tree that contains the
 	 *         stored member data
 	 */
-	public static RedBlackTree<Member1> readFile() {
+	public static <T extends Member & Comparable<T>> RedBlackTree<T> readFile(Class<T> clazz) {
 		String fileName = "members.csv"; // path to the csv file where the member data is read from
 
-		RedBlackTree<Member1> tree = new RedBlackTree<>(); // tree where the data will be stored
+		RedBlackTree<T> tree = new RedBlackTree<>(); // tree where the data will be stored
 		Scanner scnr = null; // reads the csv file
 		String csvSplit = ","; // character that the string will be split by
 		String line = "";
@@ -42,7 +42,8 @@ public class DataWrangler1 {
 				long wiscID = Long.parseLong(data[0]); // converts string to long
 				String name = data[1]; // name of member
 				String year = data[2].toUpperCase(); // year in school
-				Member1 m = new Member1(wiscID, name, Member1.SchoolYear.valueOf(year)); // creates new member object
+				T m = clazz.getDeclaredConstructor(long.class, String.class, Member.SchoolYear.class)
+						.newInstance(wiscID, name, Member.SchoolYear.valueOf(year)); // creates new member object
 				tree.insert(m); // inserts the member into the tree
 			}
 		} catch (Exception e) {
@@ -62,7 +63,7 @@ public class DataWrangler1 {
 	 * @param writer  file writer
 	 * @param gymData tree storing the member objects
 	 */
-	private static void write(FileWriter writer, RedBlackTree<Member1> gymData) throws IOException {
+	private static void write(FileWriter writer, RedBlackTree<? extends Member> gymData) throws IOException {
 		writer.write("wiscID,name,year\n"); // header
 		String treeData = gymData.toString().replace("[", "").replace("]", ""); // deletes the brackets at the ends of the string
 		String[] data = treeData.split(","); // splits string by comma
@@ -85,7 +86,7 @@ public class DataWrangler1 {
 	 *
 	 * @param gymData tree that contains data to be written into the csv file
 	 */
-	public static void writeToFile(RedBlackTree<Member1> gymData) {
+	public static void writeToFile(RedBlackTree<? extends Member> gymData) {
 		String fileName = "members.csv"; // file name
 
 		// defines several objects to be initialized in the following code
